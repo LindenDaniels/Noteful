@@ -1,6 +1,6 @@
-import React from './node_modules/react'
-import { NavLink } from './node_modules/react-router-dom'
-import datastore from '../DataStore/datastore'
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import datastore from '../DataStore/DataStore'
 
 export default function FolderList() {
     return (
