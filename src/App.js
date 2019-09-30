@@ -7,10 +7,16 @@ import NoteSideBar from './NoteSideBar/NoteSideBar';
 import Sidebar from './SideBar/SideBar';
 import Folder from './Folder/Folder';
 import NoteList from './NoteList/NoteList';
+import DataStore from './DataStore/DataStore';
 
 
 class App extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = { DataStore }
+  }
+  
+    render() {
     return (
       <div className='App'>
         <nav>
