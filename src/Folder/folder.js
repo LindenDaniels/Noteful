@@ -1,5 +1,5 @@
 import React from 'react';
-import datastore from './datastore/datastore';
+import datastore from '../datastore/datastore';
 
 export default function Folder(props) {
     const folder = datastore.find(f =>

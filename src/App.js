@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import { Route, Link, NavLink } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import FolderList from './folderList/folderList';
+import MainSideBar from './mainSideBar/mainSideBar';
+import Note from './note/note';
+import NoteSideBar from './noteSideBar/noteSideBar';
+import Sidebar from './sideBar/sideBar';
+import Folder from './folder/folder';
+import NoteList from './noteList/noteList';
 
 
 class App extends Component {
@@ -20,14 +26,19 @@ class App extends Component {
           />
           <Route
             path='/folder'
-            component={FolderSideBar}
+            component={NoteSideBar}
           />
         </Sidebar>
         <main>
           <Route 
             exact path='/'
-            component={NoteList}
+            render={(routerProps) =>
+            <NoteList
+              note={this.state.notes.find(note => note.id === routerProps.match.params.noteId)}
+            />
+            }
           />
+            
           <Route
             path='/note/:noteId'
             component={Note}
@@ -45,7 +56,6 @@ class App extends Component {
             component={Folder}
           />
         </main>
-
       </div>
     )
   }

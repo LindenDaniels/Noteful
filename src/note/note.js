@@ -1,5 +1,5 @@
 import React from 'react';
-import datastore from './datastore/datastore';
+import datastore from '../datastore/datastore';
 
 export default function Note(props) {
     const note = datastore.find(n =>
