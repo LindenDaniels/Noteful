@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
-import Note from '../note/note'
-import datastore from '../datastore/datastore';
+import React from './node_modules/react';
+import { Link } from './node_modules/react-router-dom'
+import Note from '../Note/Note'
+import datastore from '../DataStore/datastore';
 
 export default function NoteList() {
     return (

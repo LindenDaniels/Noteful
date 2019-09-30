@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
-import FolderList from './folderList/folderList';
-import MainSideBar from './mainSideBar/mainSideBar';
-import Note from './note/note';
-import NoteSideBar from './noteSideBar/noteSideBar';
-import Sidebar from './sideBar/sideBar';
-import Folder from './folder/folder';
-import NoteList from './noteList/noteList';
+import FolderList from './FolderList/FolderList';
+import MainSideBar from './MainSideBar/MainSideBar';
+import Note from './Note/Note';
+import NoteSideBar from './NoteSideBar/NoteSideBar';
+import Sidebar from './SideBar/SideBar';
+import Folder from './Folder/Folder';
+import NoteList from './NoteList/NoteList';
 
 
 class App extends Component {
