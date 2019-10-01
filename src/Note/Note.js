@@ -1,14 +1,14 @@
 import React from 'react';
-import datastore from '../DataStore/DataStore';
+import DataStore from '../DataStore/DataStore';
 
 export default function Note(props) {
-    const note = datastore.find(n =>
+    const note = DataStore.notes.find(n =>
         n.id === props.match.params.noteId)
         return (
             <div className='Note'>
                 <h2>{note.name}</h2>
             
-            {note.content.map((n, i) =>
+            {DataStore.note.content.map((n, i) =>
                 (n === '')
                 ? <br key = {i} />
                 : <p key = {i}>{n}</p> 

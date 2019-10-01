@@ -6,7 +6,7 @@ export default function FolderList() {
     return (
         <>
         <ul className="FolderList">
-            {datastore.map(folder => 
+            {datastore.folders.map(folder => 
                 <li key={folder.id}>
                     <NavLink to ={`/folder/${folder.id}`}>
                         {folder.title}

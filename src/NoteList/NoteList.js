@@ -8,7 +8,7 @@ export default function NoteList() {
         <>
         <p>Choose a note from the list below.</p>
         <ul className='NoteList'>
-            {DataStore.map(note => 
+            {DataStore.notes.map(note => 
                 <li key={note.id}>
                     <Link to = {`/note/${note.id}`}>
                         {note.name}
