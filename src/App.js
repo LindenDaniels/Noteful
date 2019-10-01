@@ -41,7 +41,7 @@ class App extends Component {
             exact path='/'
             render={(routerProps) =>
             <NoteList
-              note={this.state.notes.find(note => note.id === routerProps.match.params.noteId)}
+              note={this.state.DataStore.notes.find(note => note.id === routerProps.match.params.noteId)}
             />
             }
           />
