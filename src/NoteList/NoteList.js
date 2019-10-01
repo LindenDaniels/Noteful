@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Note from '../Note/Note';
 import DataStore from '../DataStore/DataStore';
 
 export default function NoteList() {
