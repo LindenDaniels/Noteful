@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { Link } from 'react-router-dom'
 import Note from '../Note/Note';
 import DataStore from '../DataStore/DataStore';
@@ -9,8 +9,8 @@ export default function NoteList() {
         <p>Choose a note from the list below.</p>
         <ul className='NoteList'>
             {DataStore.notes.map(note => 
-                <li key={note.id}>
-                    <Link to = {`/note/${note.id}`}>
+                <li key={DataStore.notes.id}>
+                    <Link to = {`/note/${DataStore.notes.id}`}>
                         {note.name}
                     </Link>
                 </li>
