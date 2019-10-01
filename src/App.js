@@ -54,7 +54,7 @@ class App extends Component {
             path='/folders'
             render={(routerProps) =>
             <FolderList
-              folder={this.state.folders.find(folder => folder.id === routerProps.match.params.folderId)}
+              folder={this.state.DataStore.folders.find(folder => folder.id === routerProps.match.params.folderId)}
             />
             } 
           />
