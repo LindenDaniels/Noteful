@@ -32,7 +32,7 @@
   }
   
   .App__main {
-    background-color: #102541;
+    
     grid-area: main;
     height: calc(100vh - 120px);
     overflow: auto;
