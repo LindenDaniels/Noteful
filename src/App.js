@@ -77,7 +77,7 @@ class App extends Component {
          render={routeProps => {
            const {noteId} = routeProps.match.params;
            const note = findNote(notes, noteId);
-           return <NotefulApp {...routeProps} note={note}
+           return <NotePageMain {...routeProps} note={note}
       />
 
          }}
