@@ -1,20 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import DataStore from '../DataStore/DataStore';
-
-export default function NoteList() {
+import React from 'react';
+import Note from '../Note/Note';
+export default function NoteList(props) {
     return (
-        <>
-        <p>Choose a note from the list below.</p>
-        <ul className='NoteList'>
-            {DataStore.notes.map(note => 
-                <li key={DataStore.notes.id}>
-                    <Link to = {`/note/${DataStore.notes.id}`}>
-                        {note.name}
-                    </Link>
-                </li>
-                )}
-        </ul>
-        </>
+        <section className="Notelist">
+        <ul>
+       {props.notes.map(note => 
+                <li key={note.id}>
+                    <Note
+                    name={note.name}
+                    modified={note.modified}
+                    />
+                </li>     
+       )}
+        </ul> 
+        </section>
     )
+}
+
+NoteList.defaultProps = {
+    notes: [],
 }

@@ -1,19 +1,25 @@
 import React from 'react';
-import DataStore from '../DataStore/DataStore';
+import { format } from 'date-fns'
+import { Link } from 'react-router-dom'
+import './Note.css'
 
 export default function Note(props) {
-    const note = DataStore.notes.find(n =>
-        n.id === props.match.params.noteId)
-       
-        return (
-            <div className='Note'>
-                <h2>{note.name}</h2>
-            
-            {DataStore.note.content.map((n, i) =>
-                (n === '')
-                ? <br key = {i} />
-                : <p key = {i}>{n}</p> 
-                )}
-            </div>
-        )
+  return (
+    <div className='Note'>
+      <h2 className='Note__title'>
+        <Link to={`/note/${props.id}`}>
+          {props.name}
+        </Link>
+      </h2>
+      <div className='Note__dates'>
+        <div className='Note__dates-modified'>
+          modified
+          {''}
+          <span className = 'Date'>
+            {format(props.modified, 'Do MMM YYYY')}
+          </span>
+        </div>
+      </div>
+    </div>
+  )
 }
