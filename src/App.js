@@ -91,14 +91,16 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <nav className="App__nav">{this.renderNavRoutes()}</nav>
                 <header className="App__header">
                     <h1>
                         <Link to="/">Noteful</Link>{' '}
                         
                     </h1>
                 </header>
+                <div className = "flex">
+                <nav className="App__nav">{this.renderNavRoutes()}</nav>
                 <main className="App__main">{this.renderMainRoutes()}</main>
+                </div>
             </div>
         );
     }
