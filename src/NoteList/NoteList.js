@@ -6,7 +6,7 @@ export default function NoteList(props) {
         <section className="NoteList">
         <ul className="NoteList__ul">
        {props.notes.map(note => 
-                <li key={note.id} class="NoteList__li">
+                <li key={note.id} className="NoteList__li">
                     <Note
                     id={note.id}
                     name={note.name}
