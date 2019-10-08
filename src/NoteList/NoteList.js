@@ -32,3 +32,4 @@ class NoteList extends Component {
     )
 }
 }
+export default NoteList;
