@@ -4,7 +4,7 @@ import NoteListNav from './NoteListNav/NoteListNav';
 import NotePageNav from './NotePageNav/NotePageNav';
 import NoteList from './NoteList/NoteList';
 import NotePageMain from './NotePageMain/NotePageMain';
-import DataStore from './DataStore';
+import config from './config';
 import NotesContext from './NotesContext';
 import './App.css';
 
@@ -15,39 +15,51 @@ class App extends Component {
     };
 
     componentDidMount() {
-        // fake date loading from API call
-        this.setState(DataStore);
+        Promise.all([
+            fetch(`${config.API_ENDPOINT}/notes`),
+            fetch(`${config.API_ENDPOINT}/folders`)
+        ])
+            .then(([notesRes, foldersRes]) => {
+                if (!notesRes.ok)
+                    return notesRes.json().then(e => Promise.reject(e));
+                if (!foldersRes.ok)
+                    return foldersRes.json().then(e => Promise.reject(e));
+
+                return Promise.all([notesRes.json(), foldersRes.json()]);
+            })
+            .then(([notes, folders]) => {
+                this.setState({notes, folders});
+            })
+            .catch(error => {
+                console.error({error});
+            });
     }
 
+    handleDeleteNote = noteId => {
+        this.setState({
+            notes: this.state.notes.filter(note => note.id !== noteId)
+        });
+    };
+
+
     renderNavRoutes() {
-        const contextValue = {
-            notes: this.state.notes,
-            folders: this.state.folders
-        }
         return (
             <>
                 {['/', '/folder/:folderId'].map(path => (
-                    <NotesContext.Provider value={contextValue}>
                     <Route
                         exact
                         key={path}
                         path={path}
                         component={NoteListNav}
                     />
-                
-                <Route
-                    path="/note/:noteId"
-                    component={NotePageNav}
-                 />
+                ))}
+                <Route path="/note/:noteId" component={NotePageNav} />
                 <Route path="/add-folder" component={NotePageNav} />
                 <Route path="/add-note" component={NotePageNav} />
-                </NotesContext.Provider>
-                )  
-            
-        )};
-        </>
-        )}
-        
+            </>
+        );
+    }
+
 
     renderMainRoutes() {
         

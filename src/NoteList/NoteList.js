@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Note from '../Note/Note';
 import './NoteList.css';
-import NotesContext from './NotesContext';
-import { getNotesForFolder } from '../notes-helpers'
+import NotesContext from '../NotesContext';
+import { getNotesForFolder } from '../NotesHelpers'
 class NoteList extends Component {
     static defaultProps = {
         match: {
@@ -32,4 +32,8 @@ class NoteList extends Component {
     )
 }
 }
+
+NoteList.defaultProps = {
+    notes: [],
+  }
 export default NoteList;
