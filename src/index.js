@@ -7,7 +7,7 @@ import AddFolder from './AddFolder/AddFolder';
 
 ReactDOM.render(
   <BrowserRouter>
-    <AddFolder />
+    <App />
   </BrowserRouter>,
   document.getElementById('root')
 );

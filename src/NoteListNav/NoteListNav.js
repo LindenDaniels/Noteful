@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import NotesContext from '../NotesContext'
 import { countNotesForFolder } from '../NotesHelpers'
+import AddFolder from '../AddFolder/AddFolder'
 import './NoteListNav.css'
 
 class NoteListNav extends Component {
@@ -24,6 +25,7 @@ class NoteListNav extends Component {
                         {folder.name}
                         </NavLink>
                     </li>)}
+                    <AddFolder />
             </ul>
         </div>
     )

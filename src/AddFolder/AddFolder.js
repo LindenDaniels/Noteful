@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import ValidationError from '../ValidationError';
+import NotesContext from '../NotesContext';
+import config from '../config'
 
 
 class AddFolder extends Component {
+    static contextType = NotesContext;
 
     constructor(props) {
         super(props);
@@ -16,6 +19,44 @@ class AddFolder extends Component {
 
         console.log('Name: ', name.value);
     }
+
+    handleSubmit = e => {
+        e.preventDefault()
+        const { name } = e.target;
+        const folder = {
+            name: name.value
+        }
+        this.setState({ error: null })
+        fetch(`${config.API_ENDPOINT}/folders`, {
+            method: 'POST',
+            body: JSON.stringify(folder),
+            headers: {
+                'content-type': 'application/json'
+
+            }
+        })
+        .then(res => {
+            if(!res.ok) {
+                return res.json().then(error => {
+                    throw error
+                })
+            }
+            return res.json()
+        }).then(data => {
+            name.value = ' '
+            this.context.addFolder(data)
+            //this.props.history.push('/')
+        })
+        .catch(error => {
+            console.log(error)
+            this.setState({error})
+        })
+    }
+    
+
+    handleClickCancel = () => {
+        this.props.history.push('/')
+    };
 
     validateName() {
         const name = this.state.name.value.trim();
@@ -34,6 +75,7 @@ class AddFolder extends Component {
         console.log('Name: ', name.value);
     }
     render() {
+        
         const nameError = this.validateName();
         return (
             <form className="AddFolder" onSubmit={e => this.handleSubmit(e)}>
@@ -50,7 +92,7 @@ class AddFolder extends Component {
                     Save
                 </button>
                 <button type="reset" className="new-folder__button">
-                    Cancel
+                 Cancel
                 </button>
                 </div>
             </form>

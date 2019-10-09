@@ -24,7 +24,9 @@ class NotePageNav extends Component {
                 <h3 className='NotePageNav__folder-name'>
                   {folder.name}
                 </h3>
+                
             )}
+            <button type="submit">New Folder</button>
         </div>
     )
 }
