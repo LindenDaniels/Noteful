@@ -45,9 +45,9 @@ class App extends Component {
     handleAddFolder = folder => {
         this.setState({
             folders: [...this.state.folders, folder]
-        },
-        () => this.props.history.replace('/'));
-    }
+        })
+        
+    };
 
 
     renderNavRoutes() {
