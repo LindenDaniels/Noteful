@@ -38,7 +38,7 @@ class AddNote extends Component {
         
         const note = {
             name: name.value,
-            folder: folder.name,
+            folder: folder.value,
             content: content.value
         }
         this.setState({ error: null })
@@ -59,9 +59,8 @@ class AddNote extends Component {
             return res.json()
         }).then(data => {
             name.value = ' '
-            folder.name= ' '
-            folder.id = ' '
             content.value = ' '
+            folder.value = ' '
             this.context.addNote(data)
             this.props.history.push('/')
         })
@@ -90,7 +89,7 @@ class AddNote extends Component {
     }
     handleSubmit(event) {
         event.preventDefault();
-        const { name } = this.state;
+        const { name} = this.state;
         console.log('Name: ', name.value);
     }
 
