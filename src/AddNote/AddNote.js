@@ -7,12 +7,12 @@ import { findFolder } from '../NotesHelpers'
 
 class AddNote extends Component {
    
-    
     static contextType = NotesContext;
     static defaultProps = {
         match: {
-            params: {}
-        }
+            params: {  }
+        },
+        history: [] 
     }
     constructor(props) {
         super(props);
@@ -39,9 +39,7 @@ class AddNote extends Component {
     handleSubmit = e => {
         e.preventDefault()
         const { name, folder, content } = this.state;
-        console.log(name);
-        console.log(folder);
-        console.log(e.target);
+        console.log(this.props.history)
         
         const note = {
             name: name.value,

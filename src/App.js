@@ -50,6 +50,13 @@ class App extends Component {
         
     };
 
+    handleAddNote = note => {
+        this.setState({
+            notes: [...this.state.notes, note]
+        })
+        
+    };
+
 
     renderNavRoutes() {
         return (
