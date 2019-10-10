@@ -32,15 +32,30 @@ class AddNote extends Component {
         }
         const { name, folder } = this.state;
 
-        console.log('Name: ', name.value);
-        console.log('Folder', folder.value)
+        
+        
     }
-
+    componentDidMount() {
+        Promise.all([
+            fetch(`${config.API_ENDPOINT}/folders`)
+        ])
+            .then(([foldersRes]) => {
+                if (!foldersRes.ok)
+                    return foldersRes.json().then(e => Promise.reject(e));
+                return Promise.all([foldersRes.json()]);
+            })
+            .then(([folder]) => {
+                this.setState({folder});
+            })
+            .catch(error => {
+                console.error({error});
+            });
+    }
 
     handleSubmit = e => {
         e.preventDefault()
         const { name, folder, content } = this.state;
-        console.log(this.props.history)
+        
         
         const note = {
             name: name.value,
