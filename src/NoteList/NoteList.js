@@ -3,6 +3,7 @@ import Note from '../Note/Note';
 import './NoteList.css';
 import NotesContext from '../NotesContext';
 import { getNotesForFolder } from '../NotesHelpers'
+import { NavLink } from 'react-router-dom'
 class NoteList extends Component {
     static defaultProps = {
         match: {
@@ -17,6 +18,8 @@ class NoteList extends Component {
     
     return (
         <section className="NoteList">
+            <button type="submit">
+                        <NavLink to="/add-note">New Note</NavLink></button>
         <ul className="NoteList__ul">
        {notesForFolder.map(note => 
                 <li key={note.id} className="NoteList__li">
@@ -28,6 +31,7 @@ class NoteList extends Component {
                 </li>     
        )}
         </ul> 
+       
         </section>
     )
 }

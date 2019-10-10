@@ -8,7 +8,7 @@ import AddNote from './AddNote/AddNote'
 
 ReactDOM.render(
   <BrowserRouter>
-    <AddNote />
+    <App />
   </BrowserRouter>,
   document.getElementById('root')
 );

@@ -3,6 +3,7 @@ import ValidationError from '../ValidationError';
 import NotesContext from '../NotesContext';
 import config from '../config'
 import { findFolder } from '../NotesHelpers'
+import { withRouter } from 'react-router'
 
 
 class AddNote extends Component {
@@ -11,8 +12,8 @@ class AddNote extends Component {
     static defaultProps = {
         match: {
             params: {  }
-        },
-        history: [] 
+        }
+     
     }
     constructor(props) {
         super(props);
@@ -132,4 +133,4 @@ class AddNote extends Component {
 } 
 
 
-export default AddNote;
+export default withRouter(AddNote);
