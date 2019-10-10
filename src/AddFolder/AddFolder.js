@@ -91,7 +91,7 @@ class AddFolder extends Component {
                 <button type="submit" className="new-folder__button" disabled={this.validateName()}>
                     Save
                 </button>
-                <button type="reset" className="new-folder__button">
+                <button type="button" className="new-folder__button" onClick={this.handleClickCancel}>
                  Cancel
                 </button>
                 </div>
