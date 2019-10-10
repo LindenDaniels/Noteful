@@ -24,6 +24,9 @@ class AddNote extends Component {
             folder: {
                 value: '',
                 touched: false
+            },
+            content: {
+                value: ''
             }
         }
         const { name, folder } = this.state;
@@ -35,7 +38,10 @@ class AddNote extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        const { name, folder, content } = e.target;
+        const { name, folder, content } = this.state;
+        console.log(name);
+        console.log(folder);
+        console.log(e.target);
         
         const note = {
             name: name.value,
@@ -87,11 +93,6 @@ class AddNote extends Component {
     }
     updateName(name) {
         this.setState({name: {value: name, touched: true}});
-    }
-    handleSubmit(event) {
-        event.preventDefault();
-        const { name} = this.state;
-        console.log('Name: ', name.value);
     }
 
     render() {
