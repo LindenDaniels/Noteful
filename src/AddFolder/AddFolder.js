@@ -15,9 +15,6 @@ class AddFolder extends Component {
               touched: false
             },
         }
-        const { name } = this.state;
-
-        console.log('Name: ', name.value);
     }
 
     handleSubmit = e => {

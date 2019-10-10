@@ -7,6 +7,7 @@ import NotePageMain from './NotePageMain/NotePageMain';
 import config from './config';
 import NotesContext from './NotesContext';
 import AddFolder from './AddFolder/AddFolder';
+import AddNote from './AddNote/AddNote'
 import './App.css';
 
 class App extends Component {
@@ -63,8 +64,8 @@ class App extends Component {
                 ))}
                 <Route path="/note/:noteId" component={NotePageNav} />
                 <Route path="/add-folder" component={AddFolder} />
-                <Route path="/add-note" component={NotePageNav} />
-            </>
+                <Route path="/add-note" component={AddNote} />
+              </>  
         );
     }
 
@@ -96,7 +97,8 @@ class App extends Component {
             notes: this.state.notes,
             folders: this.state.folders,
             deleteNote: this.handleDeleteNote,
-            addFolder: this.handleAddFolder
+            addFolder: this.handleAddFolder,
+            addNote: this.handleAddNote
         };
         
         return (

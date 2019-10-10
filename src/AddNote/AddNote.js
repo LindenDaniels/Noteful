@@ -111,7 +111,7 @@ class AddNote extends Component {
                     )}
                     <label htmlFor="folder">Select a Folder</label>
                     <select>
-                        {folder && (
+                    {['/', '/folder/:folderId'].map(folder =>
                             <option key={folder.id} value={folder.name} onChange={e => this.updateFolder(e.target.value)}>
                                 {folder.name}
                             </option>
