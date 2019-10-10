@@ -2,14 +2,13 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import NotesContext from '../NotesContext'
 import { countNotesForFolder } from '../NotesHelpers'
-import AddFolder from '../AddFolder/AddFolder'
 import './NoteListNav.css'
 
 class NoteListNav extends Component {
     static contextType = NotesContext;
     
     render() {
-        const{ folders = [], notes=[] } = this.context;
+        const { folders = [], notes=[] } = this.context;
     return (
         <div className='NoteListNav'>
             <ul className='NoteListNav__list'>
