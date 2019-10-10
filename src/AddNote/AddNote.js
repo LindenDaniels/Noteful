@@ -114,6 +114,7 @@ class AddNote extends Component {
         const { folders=[] } = this.context
         const folder = findFolder(folders, folderId)
         const nameError = this.validateName();
+        console.log(this.state.folder)
         return (
             <form className="add-note" onSubmit={e => this.handleSubmit(e)}>
                 <h2>New Note</h2>
@@ -125,7 +126,7 @@ class AddNote extends Component {
                     )}
                     <label htmlFor="folder">Select a Folder</label>
                     <select>
-                    {[this.state.folder].map(folder => (
+                    {this.state.folder.map(folder => (
                             <option key={folder.id} value={folder.name} onChange={e => this.updateFolder(e.target.value)}>
                                 {folder.name}
                             </option>
