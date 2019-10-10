@@ -7,6 +7,13 @@ import { findFolder } from '../NotesHelpers'
 
 class AddNote extends Component {
    
+    
+    static contextType = NotesContext;
+    static defaultProps = {
+        match: {
+            params: {}
+        }
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -22,13 +29,7 @@ class AddNote extends Component {
         const { name, folder } = this.state;
 
         console.log('Name: ', name.value);
-        console.log('Folder', folder.name)
-    }
-    static contextType = NotesContext;
-    static defaultProps = {
-        match: {
-            params: {}
-        }
+        console.log('Folder', folder.value)
     }
 
 
@@ -82,7 +83,7 @@ class AddNote extends Component {
     }
 }
     updateFolder(folder) {
-        this.setState({name: {value: folder}});
+        this.setState({folder: {value: folder}});
     }
     updateName(name) {
         this.setState({name: {value: name, touched: true}});
@@ -108,9 +109,9 @@ class AddNote extends Component {
                     <ValidationError message={nameError}/>
                     )}
                     <label htmlFor="folder">Select a Folder</label>
-                    <select onChange={e => this.updateFolder(e.target.value)}>
+                    <select>
                         {folder && (
-                            <option key={folder.id} value={folder.name}>
+                            <option key={folder.id} value={folder.name} onChange={e => this.updateFolder(e.target.value)}>
                                 {folder.name}
                             </option>
                         )}
