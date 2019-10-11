@@ -4,6 +4,7 @@ import NotesContext from '../NotesContext';
 import config from '../config'
 import { findFolder } from '../NotesHelpers'
 import { withRouter } from 'react-router'
+import NotefulForm from '../NotefulForm/NotefulForm'
 
 
 class AddNote extends Component {
@@ -30,50 +31,9 @@ class AddNote extends Component {
                 value: ''
             }
         }
-        const { name, folder } = this.state;
-
-        
-        
     }
 
-    handleFolderPatch = e => {
-        e.preventDefault()
-        const { name, folder, content } = this.state;
-        console.log(folder)
-        const note = {
-            name: name.value,
-            folder: folder.value,
-            content: content.value
-        }
-        this.setState({ error: null })
-        fetch(`${config.API_ENDPOINT}/folders`, {
-            method: 'POST',
-            body: JSON.stringify(note),
-            headers: {
-                'content-type': 'application/json'
-
-            }
-        })
-        .then(res => {
-            if(!res.ok) {
-                return res.json().then(error => {
-                    throw error
-                })
-            }
-            return res.json()
-        }).then(data => {
-            name.value = ' '
-            content.value = ' '
-            folder.value = ' '
-            this.context.push(data)
-           
-            
-        })
-        .catch(error => {
-            console.log(error)
-            this.setState({error})
-        })
-    }
+    
 
     
     componentDidMount() {
@@ -96,13 +56,11 @@ class AddNote extends Component {
     handleSubmit = e => {
         e.preventDefault()
         const { name, folder, content } = this.state;
-        
-        const folderName = this.context.folder
-        console.log(folderName)
+
         const note = {
             name: name.value,
             folder: folder.value,
-            content: content.value
+            content: e.target['note-content'].value
         }
         this.setState({ error: null })
         fetch(`${config.API_ENDPOINT}/notes`, {
@@ -157,9 +115,8 @@ class AddNote extends Component {
         const { folders=[] } = this.context
         const folder = findFolder(folders, folderId)
         const nameError = this.validateName();
-        console.log(NotesContext)
         return (
-            <form className="add-note" onSubmit={e => this.handleSubmit(e)}>
+            <NotefulForm className="add-note" onSubmit={e => this.handleSubmit(e)}>
                 <h2>New Note</h2>
                 <div className="note-inputs">
                     <label htmlFor = "name">Note Name</label>
@@ -175,6 +132,8 @@ class AddNote extends Component {
                             </option>
                         ))}
                     </select>
+                    <label htmlFor="note-content">Content</label>
+                    <textarea type="text" className="note-content" name="note-content" id="note-content" />
 
                 </div>
                 <div className="new-note__buttons">
@@ -185,7 +144,7 @@ class AddNote extends Component {
                  Cancel
                 </button>
                 </div>
-            </form>
+            </NotefulForm>
             
         )
     }
