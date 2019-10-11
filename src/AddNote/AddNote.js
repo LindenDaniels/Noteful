@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ValidationError from '../ValidationError';
 import NotesContext from '../NotesContext';
 import config from '../config'
-import { findFolder } from '../NotesHelpers'
 import { withRouter } from 'react-router'
 import NotefulForm from '../NotefulForm/NotefulForm'
 
@@ -32,8 +31,6 @@ class AddNote extends Component {
             }
         }
     }
-
-    
 
     
     componentDidMount() {
@@ -92,7 +89,6 @@ class AddNote extends Component {
         })
     }
     
-
     handleClickCancel = () => {
         this.props.history.push('/')
     };
@@ -111,9 +107,6 @@ class AddNote extends Component {
     }
 
     render() {
-        const { folderId } = this.props.match.params
-        const { folders=[] } = this.context
-        const folder = findFolder(folders, folderId)
         const nameError = this.validateName();
         return (
             <NotefulForm className="add-note" onSubmit={e => this.handleSubmit(e)}>
