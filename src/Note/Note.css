@@ -1,5 +1,8 @@
 .Note {
-    border: 3px solid;
+    border: 1px solid;
     align-self: center;
     margin-bottom: 5px;
+    width: 600px;
+    flex: 1
 }
+
