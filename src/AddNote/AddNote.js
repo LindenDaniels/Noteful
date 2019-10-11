@@ -47,7 +47,7 @@ class AddNote extends Component {
         }
         this.setState({ error: null })
         fetch(`${config.API_ENDPOINT}/folders`, {
-            method: 'PATCH',
+            method: 'POST',
             body: JSON.stringify(note),
             headers: {
                 'content-type': 'application/json'

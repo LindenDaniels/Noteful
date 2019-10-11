@@ -66,11 +66,7 @@ class AddFolder extends Component {
     updateName(name) {
         this.setState({name: {value: name, touched: true}});
     }
-    handleSubmit(event) {
-        event.preventDefault();
-        const { name } = this.state;
-        console.log('Name: ', name.value);
-    }
+ 
     render() {
         
         const nameError = this.validateName();
@@ -98,3 +94,4 @@ class AddFolder extends Component {
     }
 } 
 export default AddFolder;
+
