@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ValidationError from '../ValidationError';
 import NotesContext from '../NotesContext';
 import config from '../config'
+import PropTypes from 'prop-types';
 
 
 class AddFolder extends Component {
@@ -93,5 +94,8 @@ class AddFolder extends Component {
         )
     }
 } 
+AddFolder.propTypes = {
+    history: PropTypes.object
+};
 export default AddFolder;
 
