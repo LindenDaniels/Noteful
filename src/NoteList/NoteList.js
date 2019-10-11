@@ -4,6 +4,7 @@ import './NoteList.css';
 import NotesContext from '../NotesContext';
 import { getNotesForFolder } from '../NotesHelpers'
 import { NavLink } from 'react-router-dom'
+import NotefulError from '../NotefulError'
 class NoteList extends Component {
     static defaultProps = {
         match: {
@@ -23,11 +24,13 @@ class NoteList extends Component {
         <ul className="NoteList__ul">
        {notesForFolder.map(note => 
                 <li key={note.id} className="NoteList__li">
+                    <NotefulError key={note.id}>
                     <Note
                     id={note.id}
                     name={note.name}
                     modified={note.modified}
                     />
+                    </NotefulError>
                 </li>     
        )}
         </ul> 
