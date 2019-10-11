@@ -3,6 +3,15 @@
     align-self: center;
     margin-bottom: 5px;
     width: 600px;
-    flex: 1
+    flex: 1;
+   
+}
+
+.Note__title {
+    margin-left: 10px;
+}
+
+.Note__delete {
+    justify-content: flex-end;
 }
 
