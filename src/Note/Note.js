@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import './Note.css'
 import NotesContext from '../NotesContext';
 import config from '../config'
+import PropTypes from 'prop-types';
 
 
 class Note extends Component {
@@ -70,4 +71,10 @@ class Note extends Component {
 }
 }
 
+Note.propTypes = {
+  onDeleteNote: PropTypes.func,
+  name: PropTypes.string,
+  id: PropTypes.string,
+  modified: PropTypes.string
+}
 export default Note;
