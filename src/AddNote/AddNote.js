@@ -35,6 +35,47 @@ class AddNote extends Component {
         
         
     }
+
+    handleFolderPatch = e => {
+        e.preventDefault()
+        const { name, folder, content } = this.state;
+        console.log(folder)
+        const note = {
+            name: name.value,
+            folder: folder.value,
+            content: content.value
+        }
+        this.setState({ error: null })
+        fetch(`${config.API_ENDPOINT}/folders`, {
+            method: 'PATCH',
+            body: JSON.stringify(folder),
+            headers: {
+                'content-type': 'application/json'
+
+            }
+        })
+        .then(res => {
+            if(!res.ok) {
+                return res.json().then(error => {
+                    throw error
+                })
+            }
+            return res.json()
+        }).then(data => {
+            name.value = ' '
+            content.value = ' '
+            folder.value = ' '
+            this.context.push(data)
+           
+            
+        })
+        .catch(error => {
+            console.log(error)
+            this.setState({error})
+        })
+    }
+
+    
     componentDidMount() {
         Promise.all([
             fetch(`${config.API_ENDPOINT}/folders`)
@@ -56,7 +97,8 @@ class AddNote extends Component {
         e.preventDefault()
         const { name, folder, content } = this.state;
         
-        
+        const folderName = this.context.folder
+        console.log(folderName)
         const note = {
             name: name.value,
             folder: folder.value,
@@ -83,6 +125,7 @@ class AddNote extends Component {
             content.value = ' '
             folder.value = ' '
             this.context.addNote(data)
+           
             this.props.history.push('/')
         })
         .catch(error => {
