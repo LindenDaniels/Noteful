@@ -53,13 +53,18 @@ class AddNote extends Component {
     handleSubmit = e => {
         e.preventDefault()
         const { name, folder, content } = this.state;
-
+        let f = document.getElementById('folder-select')
+        let selectedFolder = f.options[f.selectedIndex].value;
+       
+        
         const note = {
             name: name.value,
-            folder: folder.value,
+            folder: selectedFolder.value,
             content: e.target['note-content'].value
         }
+        
         this.setState({ error: null })
+        
         fetch(`${config.API_ENDPOINT}/notes`, {
             method: 'POST',
             body: JSON.stringify(note),
@@ -80,8 +85,7 @@ class AddNote extends Component {
             content.value = ' '
             folder.value = ' '
             this.context.addNote(data)
-           
-            this.props.history.push('/')
+            this.props.history.push(`/folders/${selectedFolder}`)
         })
         .catch(error => {
             console.log(error)
@@ -118,9 +122,9 @@ class AddNote extends Component {
                     <ValidationError message={nameError}/>
                     )}
                     <label htmlFor="folder">Select a Folder</label>
-                    <select>
+                    <select id="folder-select">
                     {this.state.folder && this.context.folders.map(folder => (
-                            <option key={folder.id} value={folder.name} onChange={e => this.updateFolder(e.target.value)}>
+                            <option key={folder.id} value={folder.id} onChange={e => this.updateFolder(e.target.value)}>
                                 {folder.name}
                             </option>
                         ))}
