@@ -4,6 +4,7 @@ import NotesContext from '../NotesContext';
 import config from '../config'
 import { withRouter } from 'react-router'
 import NotefulForm from '../NotefulForm/NotefulForm'
+import PropTypes from 'prop-types'
 
 
 class AddNote extends Component {
@@ -146,6 +147,8 @@ class AddNote extends Component {
         )
     }
 } 
-
+AddNote.defaultProps = {
+    history: PropTypes.Object,
+  }
 
 export default withRouter(AddNote);
