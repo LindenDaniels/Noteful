@@ -25,7 +25,7 @@ class NoteListNav extends Component {
                         </NavLink>
                     </li>)}
                     <button type="submit">
-                        <NavLink to="/add-folder">Add Folder</NavLink></button>
+                        <NavLink to="/add-folder" className="AddFolder">Add Folder</NavLink></button>
             </ul>
         </div>
     )

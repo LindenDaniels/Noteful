@@ -19,8 +19,8 @@ class NoteList extends Component {
     
     return (
         <section className="NoteList">
-            <button type="submit">
-                        <NavLink to="/add-note">New Note</NavLink></button>
+            <button type="submit" className="AddNote">
+                        <NavLink to="/add-note">Add Note</NavLink></button>
         <ul className="NoteList__ul">
        {notesForFolder.map(note => 
                 <li key={note.id} className="NoteList__li">

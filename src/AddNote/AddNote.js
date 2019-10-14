@@ -3,6 +3,7 @@ import NotefulForm from '../NotefulForm/NotefulForm'
 import NotesContext from '../NotesContext'
 import config from '../config'
 import './AddNote.css'
+import PropTypes from 'prop-types';
 
 export default class AddNote extends Component {
   static defaultProps = {
@@ -87,5 +88,9 @@ export default class AddNote extends Component {
         </NotefulForm>
       </section>
     )
-  }
+  } 
 }
+
+AddNote.propTypes = {
+    history: PropTypes.object
+};
