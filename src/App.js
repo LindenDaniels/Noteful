@@ -118,10 +118,10 @@ class App extends Component {
                     </h1>
                 </header>
                
-                <div className = "flex">
+               
                 <nav className="App__nav">{this.renderNavRoutes()}</nav>
                 <main className="App__main">{this.renderMainRoutes()}</main>
-                </div>
+                
                 
             </div>
             </NotesContext.Provider>

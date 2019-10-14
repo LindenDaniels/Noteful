@@ -11,6 +11,10 @@ export default class AddNote extends Component {
     },
   }
   static contextType = NotesContext;
+  
+  handleClickCancel = () => {
+    this.props.history.push('/')
+};
 
   handleSubmit = e => {
     e.preventDefault()
@@ -51,7 +55,7 @@ export default class AddNote extends Component {
             <label htmlFor='note-name-input'>
               Name
             </label>
-            <input type='text' id='note-name-input' name='note-name' />
+            <input type='text' id='note-name-input' name='note-name' required />
           </div>
           <div className='field'>
             <label htmlFor='note-content-input'>
@@ -63,7 +67,7 @@ export default class AddNote extends Component {
             <label htmlFor='note-folder-select'>
               Folder
             </label>
-            <select id='note-folder-select' name='note-folder-id'>
+            <select id='note-folder-select' name='note-folder-id' required>
               <option value={null}>...</option>
               {folders.map(folder =>
                 <option key={folder.id} value={folder.id}>
@@ -76,6 +80,9 @@ export default class AddNote extends Component {
             <button type='submit'>
               Add note
             </button>
+            <button type="button" className="new-note__button" onClick={this.handleClickCancel}>
+                 Cancel
+                </button>
           </div>
         </NotefulForm>
       </section>
