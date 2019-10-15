@@ -41,6 +41,6 @@ class NoteList extends Component {
 }
 
 NoteList.defaultProps = {
-    notes: [],
+    notes: [].isRequired,
   }
 export default NoteList;

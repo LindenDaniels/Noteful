@@ -69,7 +69,6 @@ export default class AddNote extends Component {
               Folder
             </label>
             <select id='note-folder-select' name='note-folder-id' required>
-              <option value={null}>...</option>
               {folders.map(folder =>
                 <option key={folder.id} value={folder.id}>
                   {folder.name}
@@ -92,5 +91,5 @@ export default class AddNote extends Component {
 }
 
 AddNote.propTypes = {
-    history: PropTypes.object
+    history: PropTypes.object.isRequired
 };

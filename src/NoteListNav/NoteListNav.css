@@ -45,5 +45,10 @@
 
 .AddFolder {
  
-  text-decoration: none;
+ text-decoration: none;
+}
+
+.NoteList__buttons {
+  text-align:right;
+
 }

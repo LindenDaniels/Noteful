@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './NotePageNav.css'
 import NotesContext from '../NotesContext';
 import { findNote, findFolder } from '../NotesHelpers'
+import { NavLink } from 'react-router-dom'
 
 class NotePageNav extends Component {
     static defaultProps = {
@@ -26,7 +27,8 @@ class NotePageNav extends Component {
                 </h3>
                 
             )}
-            <button type="submit">New Folder</button>
+            <button type="submit">
+                        <NavLink to="/add-folder" className="AddFolder">Add Folder</NavLink></button>
         </div>
     )
 }
