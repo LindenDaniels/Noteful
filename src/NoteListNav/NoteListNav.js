@@ -9,7 +9,7 @@ import NoteApiService from '../services/note-api-service';
 import FolderApiService from '../services/folder-api-service';
 
 class NoteListNav extends Component {
-    static contextType = { FolderListContext, } //NotesContext, //NoteListContext  }
+    static contextType = FolderListContext //NotesContext, //NoteListContext  }
 
     componentDidMount() {
         this.context.clearError()
