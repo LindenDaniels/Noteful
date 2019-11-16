@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {Route, Link, Switch} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
 import NoteListNav from './NoteListNav/NoteListNav';
 import NotePageNav from './NotePageNav/NotePageNav';
 import NoteList from './NoteList/NoteList';
 import NotePageMain from './NotePageMain/NotePageMain';
-import config from './config';
 import NotesContext from './contexts/NotesContext';
+import FolderListContext from './contexts/FolderListContext';
+import NoteListContext from './contexts/NoteListContext';
 import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote'
 import './App.css';
@@ -61,7 +62,9 @@ class App extends Component {
         ;
         
         return (
+            <FolderListContext.Provider>
             <NotesContext.Provider>
+            <NoteListContext.Provider>
             <div className="App">
                 <header className="App__header">
                     <h1>
@@ -76,7 +79,10 @@ class App extends Component {
                 
                 
             </div>
+            </NoteListContext.Provider>
             </NotesContext.Provider>
+            </FolderListContext.Provider>
+            
         );
     }
 }

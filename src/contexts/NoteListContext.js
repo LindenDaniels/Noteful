@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
 const NoteListContext = React.createContext({
+  notes: [],
+  folders: [],
   NoteList: [],
   error: null,
   setError: () => {},
@@ -11,7 +13,7 @@ export default NoteListContext
 
 export class NoteListProvider extends Component {
   state = {
-    thingList: [],
+    NoteList: [],
     error: null,
   };
 
@@ -30,7 +32,7 @@ export class NoteListProvider extends Component {
 
   render() {
     const value = {
-      noteList: this.state.noteList,
+      NoteList: this.state.NoteList,
       error: this.state.error,
       setError: this.setError,
       clearError: this.clearError,

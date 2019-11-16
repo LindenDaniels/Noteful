@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 export const nullNote = {
-    name: {},
+    
     folder: [],
     modified: [],
     content: [],
