@@ -14,6 +14,7 @@ export default NoteListContext
 export class NoteListProvider extends Component {
   state = {
     NoteList: [],
+    folders: [],
     error: null,
   };
 

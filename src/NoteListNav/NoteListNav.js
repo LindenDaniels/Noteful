@@ -9,12 +9,12 @@ import NoteApiService from '../services/note-api-service';
 import FolderApiService from '../services/folder-api-service';
 
 class NoteListNav extends Component {
-    static contextType = { NotesContext, NoteListContext, FolderListContext }
+    static contextType = { FolderListContext, } //NotesContext, //NoteListContext  }
 
     componentDidMount() {
         this.context.clearError()
         FolderApiService.getFolders()
-        .then(this.context.setFolderList)
+        .then(this.context.setFolderList, this.context.setFolder)
         .catch(this.context.setError)
         .then(
         NoteApiService.getNotes()
