@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-import NotesContext from '../NotesContext'
+import NotesContext from '../contexts/NotesContext'
 import { countNotesForFolder } from '../NotesHelpers'
 import './NoteListNav.css'
 

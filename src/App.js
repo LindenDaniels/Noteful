@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Route, Link} from 'react-router-dom';
+import {Route, Link, Switch} from 'react-router-dom';
 import NoteListNav from './NoteListNav/NoteListNav';
 import NotePageNav from './NotePageNav/NotePageNav';
 import NoteList from './NoteList/NoteList';
 import NotePageMain from './NotePageMain/NotePageMain';
 import config from './config';
-import NotesContext from './NotesContext';
+import NotesContext from './contexts/NotesContext';
 import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote'
 import './App.css';
@@ -15,48 +15,6 @@ class App extends Component {
         notes: [],
         folders: []
     };
-
-   /* UNSAFE_componentDidMount() {
-        Promise.all([
-            fetch(`${config.API_ENDPOINT}/notes`),
-            fetch(`${config.API_ENDPOINT}/folders`)
-        ])
-            .then(([notesRes, foldersRes]) => {
-                if (!notesRes.ok)
-                    return notesRes.json().then(e => Promise.reject(e));
-                if (!foldersRes.ok)
-                    return foldersRes.json().then(e => Promise.reject(e));
-
-                return Promise.all([notesRes.json(), foldersRes.json()]);
-            })
-            .then(([notes, folders]) => {
-                this.setState({notes, folders});
-            })
-            .catch(error => {
-                console.error({error});
-            });
-    } */
-
-    handleDeleteNote = noteId => {
-        this.setState({
-            notes: this.state.notes.filter(note => note.id !== noteId)
-        });
-    };
-
-    handleAddFolder = folder => {
-        this.setState({
-            folders: [...this.state.folders, folder]
-        })
-        
-    };
-
-    handleAddNote = note => {
-        this.setState({
-            notes: [...this.state.notes, note]
-        })
-        
-    };
-
 
     renderNavRoutes() {
         return (
@@ -100,16 +58,10 @@ class App extends Component {
     
 
     render() {
-        const contextValue = {
-            notes: this.state.notes,
-            folders: this.state.folders,
-            deleteNote: this.handleDeleteNote,
-            addFolder: this.handleAddFolder,
-            addNote: this.handleAddNote
-        };
+        ;
         
         return (
-            <NotesContext.Provider value={contextValue}>
+            <NotesContext.Provider>
             <div className="App">
                 <header className="App__header">
                     <h1>

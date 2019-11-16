@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ValidationError from '../ValidationError';
-import NotesContext from '../NotesContext';
+import NotesContext from '../contexts/NotesContext';
 import config from '../config'
 import PropTypes from 'prop-types';
 

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import { React, Component } from 'react';
 import Note from '../Note/Note';
 import './NoteList.css';
-import NotesContext from '../NotesContext';
+import NotesContext from '../contexts/NotesContext';
 import { getNotesForFolder } from '../NotesHelpers'
 import { NavLink } from 'react-router-dom'
 import NotefulError from '../NotefulError'

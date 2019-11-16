@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Note from '../Note/Note'
 import './NotePageMain.css'
 import { findNote } from '../NotesHelpers'
-import NotesContext from '../NotesContext'
+import NotesContext from '../contexts/NotesContext'
 
 class NotePageMain extends Component {
     static defaultProps = {

@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 import { Link } from 'react-router-dom'
 import './Note.css'
-import NotesContext from '../NotesContext';
+import NotesContext from '../contexts/NotesContext';
 import config from '../config'
 import PropTypes from 'prop-types';
 

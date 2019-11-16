@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './NotePageNav.css'
-import NotesContext from '../NotesContext';
+import NotesContext from '../contexts/NotesContext';
 import { findNote, findFolder } from '../NotesHelpers'
 import { NavLink } from 'react-router-dom'
 

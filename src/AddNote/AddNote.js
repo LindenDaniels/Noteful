@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import NotefulForm from '../NotefulForm/NotefulForm'
-import NotesContext from '../NotesContext'
+import NotesContext from '../contexts/NotesContext'
 import config from '../config'
 import './AddNote.css'
 import PropTypes from 'prop-types';
