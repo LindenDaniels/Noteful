@@ -16,7 +16,7 @@ class App extends Component {
         folders: []
     };
 
-    UNSAFE_componentDidMount() {
+   /* UNSAFE_componentDidMount() {
         Promise.all([
             fetch(`${config.API_ENDPOINT}/notes`),
             fetch(`${config.API_ENDPOINT}/folders`)
@@ -35,7 +35,7 @@ class App extends Component {
             .catch(error => {
                 console.error({error});
             });
-    }
+    } */
 
     handleDeleteNote = noteId => {
         this.setState({
