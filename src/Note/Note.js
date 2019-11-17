@@ -1,47 +1,59 @@
-import React, {Component} from 'react';
-import Moment from 'react-moment';
-import 'moment-timezone';
+import React from 'react'
 import { Link } from 'react-router-dom'
-import './Note.css'
-import NotesContext from '../NotesContext';
-import config from '../config'
+import { format } from 'date-fns'
 import PropTypes from 'prop-types';
+import './Note.css'
+
+import NotefulContext from '../contexts/NotefulContext'
+import config from '../config'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+library.add(faTrashAlt);
 
 
-class Note extends Component {
+
+
+
+
+
+
+export default class Note extends React.Component {
   static defaultProps = {
     onDeleteNote: () => {},
   }
-  
-  static contextType = NotesContext;
 
-  handleClickDelete = e => {
-    e.preventDefault()
+  static contextType = NotefulContext;
+
+  handleClickDelete = () => {
     const noteId = this.props.id
+
 
     fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
-        'content-type': 'application/json'
+        'content-Type': 'application/json'
       },
     })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-        return res.json()
-      })
-      .then(() => {
-        this.context.deleteNote(noteId)
-        // allow parent to perform extra behaviour
-        this.props.onDeleteNote(noteId)
-      })
-      .catch(error => {
-        console.error({ error })
-      })
+    .then(res => {
+      if (!res.ok) {
+        return res.json().then(e => Promise.reject(e))
+      }
+    })
+    .then(() => {
+      this.context.deleteNote(noteId)
+      this.props.onDeleteNote(noteId)
+    })
+    .catch(err => {
+      console.log({ err })
+    })
   }
 
   render() {
     const { name, id, modified } = this.props
+
     return (
       <div className='Note'>
         <h2 className='Note__title'>
@@ -49,32 +61,31 @@ class Note extends Component {
             {name}
           </Link>
         </h2>
-        <button
-          className='Note__delete'
+        <button 
+          className='Note__delete' 
           type='button'
-          onClick={this.handleClickDelete}
-        >Delete Note</button>
-      <div className='Note__dates'>
-        <div className='Note__dates-modified'>
-          Modified
+          onClick={ this.handleClickDelete }>
+          <FontAwesomeIcon icon='trash-alt' />
           {' '}
-          <span className = 'Date'>
-            <Moment format='Do MMM YYYY'>
-              {modified}
-            </Moment>
-          </span>
+          remove
+        </button>
+        <div className='Note__dates'>
+          <div className='Note__dates-modified'>
+            Modified
+            {' '}
+            <span className='Date'>
+              {format(modified, 'Do MMM YYYY')}
+            </span>
+          </div>
         </div>
-      </div>
-      </div>
-    
-  )
-}
+      </div>        
+    )
+  }
 }
 
-Note.propTypes = {
+Note.propType = {
   onDeleteNote: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   modified: PropTypes.string
-}
-export default Note;
+};
