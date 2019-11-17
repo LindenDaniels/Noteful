@@ -3,9 +3,6 @@ import NotefulContext from '../contexts/NotefulContext';
 import config from '../config';
 import '../NotefulForm/NotefulForm.css';
 
-
-
-
 export default class AddNote extends React.Component {
     state = {
         title: "",

@@ -2,10 +2,17 @@ import React, { Component } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 
 import './NoteListNav.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 import NotefulContext from '../contexts/NotefulContext'
 import CircleButton from '../CircleButton/CircleButton'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+library.add(faPlus);
+
 
 export default class NoteListNav extends Component {
   static contextType = NotefulContext;

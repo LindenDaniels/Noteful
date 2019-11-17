@@ -1,5 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 
 import './NotePageNav.css';
@@ -7,6 +6,13 @@ import './NotePageNav.css';
 import { findNote, findFolder } from '../NotesHelpers';
 import CircleButton from '../CircleButton/CircleButton';
 import NotefulContext from '../contexts/NotefulContext';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+library.add(faChevronLeft);
+
 
 
 export default class NotePageNav extends React.Component {
