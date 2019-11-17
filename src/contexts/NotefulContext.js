@@ -4,7 +4,7 @@ const NotefulContext = React.createContext({
     notes: [],
     folders: [],
     toggle: false,
-    API: 'http://localhost:8000',
+    API: 'http://localhost:8000/api',
     deleteNote: () => {},
     deleteFolder: () => {},
     addFolder: () => {},

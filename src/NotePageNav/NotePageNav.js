@@ -8,6 +8,7 @@ import { findNote, findFolder } from '../NotesHelpers';
 import CircleButton from '../CircleButton/CircleButton';
 import NotefulContext from '../contexts/NotefulContext';
 
+
 export default class NotePageNav extends React.Component {
   static defaultProps = {
     history: {
