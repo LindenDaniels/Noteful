@@ -3,12 +3,13 @@ import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import NotePageMain from './NotePageMain'
 
-describe(`NotePageMain component`, () => {
+describe.skip(`NotePageMain component`, () => {
   const props = {
     note: {
       "id": "cbc787a0-ffaf-11e8-8eb2-f2801f1b9fd1",
       "name": "Dogs",
       "modified": "2019-01-03T00:00:00.000Z",
+      // "folderId": "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1",
       "content": "Corporis accusamus placeat.\n \rUnde."
     }
   }

@@ -1,46 +1,67 @@
-import { React, Component } from 'react';
-import Note from '../Note/Note';
-import './NoteList.css';
-import NotesContext from '../contexts/NotesContext';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
+
+
+import './NoteList.css'
+import NotefulContext from '../contexts/NotefulContext'
+import Note from '../Note/Note'
 import { getNotesForFolder } from '../NotesHelpers'
-import { NavLink } from 'react-router-dom'
-import NotefulError from '../NotefulError'
-class NoteList extends Component {
-    static defaultProps = {
-        match: {
-            params: {}
-        }
+import CircleButton from '../CircleButton/CircleButton'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+library.add(faPlus);
+
+
+export default class NoteList extends Component {
+  static defaultProps = {
+    match: {
+      params: {}
     }
-    static contextType = NotesContext; 
-    render() {
-        const { folderId } = this.props.match.params
-        const { notes=[]} = this.context
-        const notesForFolder = getNotesForFolder(notes, folderId)
-    
+  }
+
+  static contextType = NotefulContext;
+
+  render() {
+    const { folderId } = this.props.match.params
+    const { notes=[] } = this.context
+    const notesForFolder = getNotesForFolder(notes, folderId)
     return (
-        <section className="NoteList">
-            <button type="submit" className="AddNote">
-                        <NavLink to="/add-note">Add Note</NavLink></button>
-        <ul className="NoteList__ul">
-       {notesForFolder.map(note => 
-                <li key={note.id} className="NoteList__li">
-                    <NotefulError key={note.id}>
-                    <Note
-                    id={note.id}
-                    name={note.name}
-                    modified={note.modified}
-                    />
-                    </NotefulError>
-                </li>     
-       )}
-        </ul> 
-       
-        </section>
+      <section className='NoteListMain'>
+        <ul id="note__list">
+          {notesForFolder.map(note => 
+            <li key={note.id}>
+              <Note
+                id={note.id}
+                name={note.name}
+                modified={note.modified}
+              />
+              
+            </li>
+          )}
+        </ul>
+        <div className='NoteListMain__button-container'>
+          <CircleButton
+            tag={Link}
+            to='/add-note'
+            type='butto'
+            className='NoteListMain__add-note-button'>
+            <FontAwesomeIcon icon='plus' />
+            <br />
+            Note
+          </CircleButton>
+          
+        </div>
+      </section>
     )
-}
+  }
+
 }
 
-NoteList.defaultProps = {
-    notes: [].isRequired,
-  }
-export default NoteList;
+
+NoteList.propType = {
+  match: PropTypes.object.isRequired
+};
