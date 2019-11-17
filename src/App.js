@@ -17,7 +17,7 @@ class App extends Component {
         folders: []
     };
 
-    renderNavRoutes() {
+    /*renderNavRoutes() {
         return (
             <>
                 {['/', '/folder/:folderId'].map(path => (
@@ -86,5 +86,34 @@ class App extends Component {
         );
     }
 }
+*/
 
+render() {
+    return (
+
+<>
+<nav className="App__nav">
+  <Route exact key={"/"} path={"/"} component={NoteListNav} />
+  <Route
+    exact
+    key="/folder/:folderId"
+    path="/folder/:folderId"
+    component={NoteListNav}
+  />
+  <Route path="/note/:noteId" component={NotePageNav} />
+  <Route path="/add-folder" component={AddFolder} />
+  <Route path="/add-note" component={AddNote} />
+</nav>
+<main className="App__main">
+  <Route
+    exact
+    key="/"
+    path="/folder/:folderId"
+    component={NoteList}
+  />
+  <Route path="/note/:noteId" component={NotePageMain} />
+</main>
+</>
+    )};
+}
 export default App;
