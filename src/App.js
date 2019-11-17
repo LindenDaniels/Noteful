@@ -90,6 +90,9 @@ class App extends Component {
 
 render() {
     return (
+        <FolderListContext.Provider>
+            <NotesContext.Provider>
+            <NoteListContext.Provider>
 
 <>
 <nav className="App__nav">
@@ -114,6 +117,9 @@ render() {
   <Route path="/note/:noteId" component={NotePageMain} />
 </main>
 </>
+</NoteListContext.Provider>
+            </NotesContext.Provider>
+            </FolderListContext.Provider>
     )};
 }
 export default App;
