@@ -1,101 +1,143 @@
-import React, { Component } from 'react';
-import ValidationError from '../ValidationError';
-import NotesContext from '../NotesContext';
-import config from '../config'
+import React from 'react';
+import NotefulContext from '../contexts/NotefulContext';
+import config from '../config';
 import PropTypes from 'prop-types';
+import '../NotefulForm/NotefulForm.css'
 
-
-class AddFolder extends Component {
-    static contextType = NotesContext;
-
+export default class AddFolder extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: {
-              value: '',
-              touched: false
-            },
-        }
+        hasErrors: false,
+        title: "",
+        formValid: false,
+        titleValid: false,
+        validationMessage: "",
+        };
     }
 
-    handleSubmit = e => {
-        e.preventDefault()
-        const { name } = e.target;
-        const folder = {
-            name: name.value
+    static contextType = NotefulContext;
+    
+    goBack = () => {
+        this.props.history.goBack();
+    }
+
+    updateFormEntry(e) {           
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({
+            [e.target.name]: e.target.value
+        }, () => {this.validateEntry(name, value)});
+    }
+
+    validateEntry(name, value) {
+        let inputErrors;
+        let hasErrors = this.state.hasErrors;
+
+        value = value.trim();
+        if (value < 1) {
+            inputErrors = `${name} is required.`;
+        } 
+        
+        else {
+            inputErrors = '';
+            hasErrors = false;
         }
-        this.setState({ error: null })
+        this.setState({
+            validationMessage: inputErrors,
+            [`${name}Valid`]: !hasErrors,
+            hasErrors: !hasErrors
+        }, this.formValid );
+    }
+
+    formValid() {
+        const { titleValid } = this.state;
+        if (titleValid === true){
+            this.setState({
+                formValid: true
+            });
+        }
+        else {this.setState({
+            formValid: !this.formValid
+            }
+        )}
+      }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        const { title } = this.state;
+        const folder = {
+            name: title
+        }
+
+        this.setState({error: null})
         fetch(`${config.API_ENDPOINT}/folders`, {
             method: 'POST',
             body: JSON.stringify(folder),
             headers: {
                 'content-type': 'application/json'
-
             }
         })
         .then(res => {
-            if(!res.ok) {
+            if (!res.ok) {
                 return res.json().then(error => {
+                    console.log(`Error is: ${error}`)
                     throw error
                 })
             }
             return res.json()
-        }).then(data => {
-            name.value = ' '
+        })
+        .then(data => {
+            this.goBack()
             this.context.addFolder(data)
-            this.props.history.push('/')
         })
         .catch(error => {
-            console.log(error)
-            this.setState({error})
+            this.setState({ error })
         })
     }
-    
 
-    handleClickCancel = () => {
-        this.props.history.push('/')
-    };
-
-    validateName() {
-        const name = this.state.name.value.trim();
-        if (name.length === 0) {
-            return 'Name is required';
-        } else if (name.length < 3) {
-            return 'Name must be at least three characters long.';
-        }
-    }
-    updateName(name) {
-        this.setState({name: {value: name, touched: true}});
-    }
- 
     render() {
         
-        const nameError = this.validateName();
         return (
-            <form className="AddFolder" onSubmit={e => this.handleSubmit(e)}>
-                <h2>Add Folder</h2>
-                <div className="folder-name">
-                    <label htmlFor = "name">Folder Name</label>
-                    <input type="text" className="new-folder" name="name" id="name" onChange={e => this.updateName(e.target.value)} />
-                    {this.state.name.touched && (
-                    <ValidationError message={nameError}/>
-                    )}
+            <form 
+                className="Noteful-form"
+                onSubmit={e => this.handleSubmit(e)}>
+                <h2 className="title">Add Folder</h2>
+                <div className="form-group">
+                  <label htmlFor="title">Title</label>
+                  <input 
+                    type="text" 
+                    className="field"
+                    name="title" 
+                    id="title" 
+                    aria-label="Title"
+                    aria-required="true"
+                    placeholder="Folder Title"
+                    aria-placeholder="Folder Title"
+                    onChange={e => this.updateFormEntry(e)}/>
                 </div>
-                <div className="new-folder__buttons">
-                <button type="submit" className="new-folder__button" disabled={this.validateName()}>
-                    Save
-                </button>
-                <button type="button" className="new-folder__button" onClick={this.handleClickCancel}>
-                 Cancel
-                </button>
+                <div className="buttons">
+                 <button 
+                    type="button" 
+                    className="button"
+                    onClick={() => this.goBack()}>
+                     Cancel
+                 </button>
+                 <button 
+                    type="submit" 
+                    className="button"
+                    disabled={this.state.formValid === false}>
+                     Save
+                 </button>
+                 {}
                 </div>
-            </form>
-            
+            </form> 
         )
     }
-} 
-AddFolder.propTypes = {
-    history: PropTypes.object.isRequired
+}
+
+
+AddFolder.propType = {
+    push: PropTypes.func.isRequired
 };
-export default AddFolder;
 

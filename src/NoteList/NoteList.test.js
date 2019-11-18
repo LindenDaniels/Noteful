@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
-import NoteListMain from './NoteListMain'
+import NoteList from './NoteList'
 
-describe(`NoteListMain component`, () => {
+describe(`NoteList component`, () => {
   const props = {
     notes: [
       {
@@ -38,12 +38,12 @@ describe(`NoteListMain component`, () => {
   }
 
   it('renders a .NoteListMain by default', () => {
-    const wrapper = shallow(<NoteListMain />)
+    const wrapper = shallow(<NoteList />)
     expect(toJson(wrapper)).toMatchSnapshot()
   })
 
   it('renders a Note in ul for each notes in array', () => {
-    const ul = shallow(<NoteListMain {...props} />)
+    const ul = shallow(<NoteList {...props} />)
       .find('ul')
     expect(toJson(ul)).toMatchSnapshot()
   })
