@@ -11,6 +11,7 @@ const NoteApiService = {
               ? res.json().then(e => Promise.reject(e))
               : res.json()
           )
+          
       },
       getNote(noteId) {
         return fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {

@@ -39,6 +39,7 @@ export default class NotePageMain extends React.Component {
       }
 
     return (
+      
       <section className='NotePageMain'>
         <Note
           id={note.id}

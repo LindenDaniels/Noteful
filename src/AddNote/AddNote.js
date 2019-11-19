@@ -8,7 +8,7 @@ export default class AddNote extends React.Component {
         title: "",
         content: "",
         folderSelect: "",
-        folderId: "",
+        folder_id: "",
         formValid: false,
         titleValid: false,
         contentValid: false,
@@ -29,7 +29,7 @@ export default class AddNote extends React.Component {
         if (e.target.selectedOptions) {
             id = e.target.selectedOptions[0].id;
             this.setState({
-                'folderId': id 
+                'folder_id': id 
             })
         }
         this.setState({
@@ -81,11 +81,11 @@ export default class AddNote extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const { title, content, folderId } = this.state;
+        const { title, content, folder_id } = this.state;
         const note = {
             name: title,
             content: content,
-            folderid: folderId,
+            folder_id: folder_id,
             modified: new Date()
         }
 

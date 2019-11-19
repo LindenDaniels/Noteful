@@ -16,10 +16,6 @@ library.add(faTrashAlt);
 
 
 
-
-
-
-
 export default class Note extends React.Component {
   static defaultProps = {
     onDeleteNote: () => {},
@@ -53,6 +49,7 @@ export default class Note extends React.Component {
 
   render() {
     const { name, id, modified } = this.props
+    
 
     return (
       <div className='Note'>
