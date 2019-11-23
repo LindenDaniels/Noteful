@@ -47,7 +47,7 @@ export default class NoteList extends Component {
           <CircleButton
             tag={Link}
             to='/add-note'
-            type='butto'
+            type='button'
             className='NoteListMain__add-note-button'>
             <FontAwesomeIcon icon='plus' />
             <br />

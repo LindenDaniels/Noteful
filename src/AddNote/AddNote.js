@@ -1,14 +1,14 @@
 import React from 'react';
-import NotefulContext from '../contexts/NotefulContext';
-import config from '../config';
-import '../NotefulForm/NotefulForm.css';
+import NotefulContext from './NotefulContext';
+import config from './config';
+import './NotefulForm/NotefulForm.css';
 
 export default class AddNote extends React.Component {
     state = {
         title: "",
         content: "",
         folderSelect: "",
-        folder_id: "",
+        folderId: "",
         formValid: false,
         titleValid: false,
         contentValid: false,
@@ -29,7 +29,7 @@ export default class AddNote extends React.Component {
         if (e.target.selectedOptions) {
             id = e.target.selectedOptions[0].id;
             this.setState({
-                'folder_id': id 
+                'folderId': id 
             })
         }
         this.setState({
@@ -81,11 +81,11 @@ export default class AddNote extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const { title, content, folder_id } = this.state;
+        const { title, content, folderId } = this.state;
         const note = {
             name: title,
             content: content,
-            folder_id: folder_id,
+            folderid: folderId,
             modified: new Date()
         }
 

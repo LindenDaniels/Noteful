@@ -44,7 +44,7 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    Promise.all([fetch(`${config.API_ENDPOINT}/notes`), fetch(`${config.API_ENDPOINT}/folders`)])
+    Promise.all([fetch(`${config.API_ENDPOINT}/notes`, { mode: 'no-cors' }), fetch(`${config.API_ENDPOINT}/folders`, { mode: 'no-cors' })])
       .then(([notesRes, foldersRes]) => {
         if (!notesRes.ok) return notesRes.json().then(e => Promise.reject(e));
         if (!foldersRes.ok)
